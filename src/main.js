@@ -25,12 +25,18 @@ function getFlickrPhotos(coordinates) {
     console.log(`Latitude: ${coordinates.latitude}`);
     console.log(`Longitude: ${coordinates.longitude}`);
 
-    const flickrURL = "https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=44b40b0700e3e2b4cac39a0d304f2007&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=5&lat=" + coordinates.latitude + "&lon=" + coordinates.longitude + "&text=cats"
+    const flickrURL = "https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=44b40b0700e3e2b4cac39a0d304f2007&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=5&latitude=" + coordinates.latitude + "&longitude=" + coordinates.longitude + "&text=hawaii"
 
+    // fetch() synopsis:
+    // 1. fetch() will return a Promise (and you use Promise.prototype.then() on Promises).
     fetch(flickrURL)
+        // 2. That Promise will provide a Response object to .then().
         .then(function (response) {
+            // 3. That Response object has a method called .json().
+            // 4. .json() will return a Promise.
             return response.json(); //hydrate
         })
+        // 5. That Promise will provide the hydrated data to .then().
         .then(displayImages);
 };
 
