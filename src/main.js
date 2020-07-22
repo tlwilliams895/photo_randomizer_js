@@ -8,8 +8,8 @@ let options = {
 
 // Browser geographic location
 const fallbackLocation = {
-    latitude: 28.0352964,
-    longitude: -82.3892596
+    latitude: 48.85819,
+    longitude: 2.294585
 };
 
 // Construct the query URL
@@ -27,7 +27,7 @@ function retrievePhotos(coords) {
     console.log(`Latitude: ${coords.latitude}`);
     console.log(`Longitude: ${coords.longitude}`);
 
-    const imagesURL = "https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=44b40b0700e3e2b4cac39a0d304f2007&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=1&text=water& lat=" + coords.latitude + " & lon=" + coords.longitude + " & page=" + pageIndex
+    const imagesURL = "https://shrouded-mountain-15003.herokuapp.com/https://flickr.com/services/rest/?api_key=44b40b0700e3e2b4cac39a0d304f2007&format=json&nojsoncallback=1&method=flickr.photos.search&safe_search=1&per_page=1&text=giraffes& lat=" + coords.latitude + " & lon=" + coords.longitude + " & page=" + pageIndex
 
 
     let grabPromise = fetch(imagesURL)
@@ -40,7 +40,6 @@ function retrievePhotos(coords) {
         let imageContainer = document.querySelector(".images");
         imageContainer.src = pictures
     });
-
 };
 
 // Process the response data into an object
@@ -57,6 +56,11 @@ function useRealLocation(pos) {
 // Use the values in the response object to construct an image source URL
 function useFallbackLocation() {
     retrievePhotos(fallbackLocation);
+    let imgBtn = document.getElementById("photoBtn");
+    imgBtn.addEventListener("click", function () {
+        retrievePhotos(fallbackLocation, pageIndex);
+        pageIndex++;
+    })
 };
 
 navigator.geolocation.getCurrentPosition(useRealLocation, useFallbackLocation, options);
