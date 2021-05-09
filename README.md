@@ -1,5 +1,5 @@
 ## Photos From Here by TL Williams
-[GitLab URL](https://tlwilliams895.gitlab.io/photos_from_here)
+[GitLab URL](https://tlwilliams895.github.io/photo_randomizer_js/)
 
 Purpose: Create a web application to display photos that were taken near user's current geographic location using the Flickr API and fetch API.
 
